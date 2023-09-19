@@ -1,33 +1,44 @@
-import React from "react"
+import "./app.css";
 
-import { Weather } from "./Weather"
+import React, { FC, useEffect, useRef, useState } from "react";
 
-import type { FC } from "react"
+import Weather from "./Weather";
 
-import "./app.css"
+interface AppProps {}
 
-export const App: FC = () => {
-    const [ input, setInput ] = 
-        React.useState( null as unknown as string )
+const App: FC<AppProps> = () => {
+  const cityInputRef = useRef<HTMLInputElement | null>(null);
+  const [city, setCity] = useState("");
+  const [theme, setTheme] = useState("dark");
 
-    const [ city, setCity ] =
-        React.useState( null as unknown as string )
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
+  };
 
-    const doStuff = ( event: any ) => 
-        setInput( event.target.value )
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
 
-    console.log( input )
-    
-    return  <>
-                <input 
-                    role="search"
-                    type="text" 
-                    value={ input as unknown as string } 
-                    onChange={ doStuff }  />
+  return (
+    <>
+      <button className="theme-button" onClick={() => toggleTheme()}>
+        {theme === "dark" ? "Light" : "Dark"} Mode
+      </button>
 
-                <button onClick={ () => setCity( input ) } >
-                    Show Weather
-                </button>
+      <input
+        ref={cityInputRef}
+        role="search"
+        type="text"
+        placeholder="Enter city name..."
+      />
 
-                < Weather city={ city } />
-            </> }
+      <button onClick={() => setCity(cityInputRef.current?.value || "")}>
+        Show Weather
+      </button>
+
+      <Weather city={city} />
+    </>
+  );
+};
+
+export default App;

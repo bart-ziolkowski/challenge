@@ -2,20 +2,19 @@
 
 exports[`App Renders Component According To Snapshot 1`] = `
 <div>
+  <button
+    class="theme-button"
+  >
+    Light
+     Mode
+  </button>
   <input
+    placeholder="Enter city name..."
     role="search"
     type="text"
-    value=""
   />
   <button>
     Show Weather
   </button>
-  <h1 />
-  <p>
-     Celcius
-  </p>
-  <img
-    alt="Icon"
-  />
 </div>
 `;

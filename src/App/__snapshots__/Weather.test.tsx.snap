@@ -1,13 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Weather Renders Component According To Snapshot 1`] = `
-<div>
-  <h1 />
-  <p>
-     Celcius
-  </p>
-  <img
-    alt="Icon"
-  />
-</div>
-`;
+exports[`Weather Renders Component According To Snapshot 1`] = `<div />`;
